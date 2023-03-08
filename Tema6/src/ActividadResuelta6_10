@@ -1,0 +1,49 @@
+
+import java.util.Scanner;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+/**
+ *
+ * @author JAVA
+ */
+public class ActividadResuelta6_10 {
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        String frase;
+        String sinEspacios, invertida;
+        System.out.println("Introduce la frase");
+        frase = sc.next();
+        frase = frase.toLowerCase();
+        sinEspacios = quitarSpace(frase);
+        invertida = invertirFrase(sinEspacios);
+
+        if (sinEspacios.equals(invertida)) {
+            System.out.println("La frase es palíndroma");
+        } else {
+            System.out.println("La frase no es palindroma");
+        }
+    }
+
+    public static String quitarSpace(String frase) {
+        String sinSpace = "";
+        for (int i = 0; i < frase.length(); i++) {
+            char c = frase.charAt(i);
+            if (!Character.isWhitespace(c)) {
+                sinSpace = sinSpace + c;
+            }
+        }
+        return sinSpace;
+    }
+
+    public static String invertirFrase(String sinEspacios) {
+        String invertir = "";
+        for (int i = 0; i < sinEspacios.length(); i++) {
+            invertir = sinEspacios.charAt(i) + invertir;
+        }
+        return invertir;
+    }
+}
