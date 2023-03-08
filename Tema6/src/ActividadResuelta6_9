@@ -1,0 +1,31 @@
+
+import java.util.Scanner;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+/**
+ *
+ * @author JAVA
+ */
+public class ActividadResuelta6_9 {
+
+    public static void main(String args[]) {
+        //Variables
+        Scanner sc = new Scanner(System.in);
+        String palabra;
+        String frase = "";
+        
+        //Preguntamos una palabra para que no de error ya que se encontraría vacía
+        System.out.println("Introduce una palabra");
+        palabra = sc.next();
+        do {
+            frase = frase + " " + palabra;
+            System.out.println("Escribe una palabra: ");
+            palabra = sc.next();
+        } while (!palabra.equals("fin"));
+
+        System.out.println(frase);
+    }
+}
