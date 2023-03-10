@@ -1,0 +1,108 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package javaapplication6_14b;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+/**
+ *
+ * @author JAVA
+ */
+public class JavaApplication6_14b {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String nombre = "";
+        String[] contactos = new String[0];
+        String[] numeroTelfs = new String[0];
+        int opcion = 0;
+
+        do {
+            System.out.println("***** AGENDA PERSONAL ******");
+            System.out.println("1. AÑADIR UN NUEVO CONTACTO");
+            System.out.println("2. BUSCAR EL TELÉFONO DE UN CONTACTO A PARTIR DE SU NOMBRE");
+            System.out.println("3. MOSTRAR INFORMACIÓN DE TODOS LOS CONTACTOS ORDENADOS ALFABÉTICAMENTE MEDIANTE EL NOMBRE");
+            System.out.println("4. Salir");
+            opcion = sc.nextInt();
+
+            if (opcion == 1) {
+                String decision;
+                do {
+                    contactos = addUser(contactos);
+                    numeroTelfs = addTelf(numeroTelfs);
+                    System.out.println("Quieres seguir añadiendo contactos? Si/No");
+                    decision = sc.next();
+                    decision = decision.toLowerCase();
+                } while (decision.contentEquals("si"));
+            } else if (opcion == 2 && contactos.length != 0) {
+                busartelf(contactos, numeroTelfs);
+            } else if (opcion == 3 && contactos.length != 0) {
+                String[][] ordenadaConctactos = mostrarInfor(contactos, numeroTelfs);
+                for (int i = 0; i < ordenadaConctactos.length; i++) {
+                    System.out.println(ordenadaConctactos[i][i]);
+
+                }
+            }
+
+        } while (opcion != 4 || contactos.length == 0);
+        
+        System.out.println("TAH LUEGO");
+
+    }
+
+    public static String[] addUser(String[] contactos) {
+        String user = "";
+        String telefono;
+        String nombre;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce un nombre: ");
+        nombre = sc.next();
+        contactos = Arrays.copyOf(contactos, contactos.length + 1);
+        contactos[contactos.length - 1] = nombre;
+
+        return contactos;
+    }
+
+    public static String[] addTelf(String[] numeroTelfs) {
+        String telefono;
+        Scanner sc = new Scanner(System.in);
+        do {
+            System.out.println("Introduce un telefono: ");
+            telefono = sc.next();
+            numeroTelfs = Arrays.copyOf(numeroTelfs, numeroTelfs.length + 1);
+            numeroTelfs[numeroTelfs.length - 1] = telefono;
+        } while (telefono.length() != 9);
+
+        return numeroTelfs;
+    }
+
+    public static void busartelf(String[] contactos, String[] numeroTelfs) {
+        String nombreBuscar;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Escribe un nombre de tu contacto");
+        nombreBuscar = sc.next();
+        for (int i = 0; i < contactos.length; i++) {
+            if (contactos[i].contentEquals(nombreBuscar)) {
+                System.out.println("El telefono que le corresponde es: " + numeroTelfs[i]);
+            }
+        }
+    }
+
+    public static String[][] mostrarInfor(String[] contactos, String[] numeroTelfs) {
+        String[][] contactosOrdenados = new String[contactos.length][numeroTelfs.length];
+
+        for (int i = 0; i < contactos.length; i++) {
+            for (int j = 0; j < contactos.length; j++) {
+                contactosOrdenados[i][j] = contactos[i] + " - " + numeroTelfs[j];
+            }
+        }
+        return contactosOrdenados;
+
+    }
+}
